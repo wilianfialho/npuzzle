@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Mine, TileStateEnum} from './Core'
+import './Tile.css'
 
 const TILE_COLORS = ['transparent', 'blue', 'green', 'red', 'purple', 'maroon', 'black', 'gray', 'turquoise'];
 
