@@ -1,0 +1,22 @@
+.colStyle {
+  border-color: white;
+  padding: 0px 3px;
+}
+
+.tileStyle {
+  padding: 0;
+  margin: 0;
+  border: 1px solid darkslategray;
+  border-radius: 3px;
+  width: 24px;
+  height: 24px;
+  background-color: 'lightgray';
+}
+
+.open {
+  background-color: 'darkgray';
+}
+
+.closed {
+  background-color: 'lightgray';
+}
