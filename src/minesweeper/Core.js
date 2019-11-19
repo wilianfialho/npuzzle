@@ -78,15 +78,12 @@ export class Field {
     }
 
     if(this.isGameWon()) {
-      this.setState({
-        gameState: GameStateEnum.WON
-      })
-      return;
+      this.gameState = GameStateEnum.WON
     }
   }
 
   isGameWon() {
-    return (this.rowCount * this.colCount) - this.countOpenTiles === this.mineCount
+    return (this.rowCount * this.colCount) - this.countOpenTiles() === this.mineCount
   }
 
   openTileRecursive(row, col) {
@@ -127,7 +124,11 @@ export class Field {
   }
 
   countOpenTiles() {
-    return this.field.filter(row => row.filter(t => t.state === TileStateEnum.OPEN).count === 0).count;
+    const count = this.field.map((row) =>
+      row.filter(tile => tile.state === TileStateEnum.OPEN).length
+    ).filter(e => e ? e : 0).reduce((prev, curr) => prev + curr)
+    console.log(count)
+    return count
   }
 
   deepCopyField() {
