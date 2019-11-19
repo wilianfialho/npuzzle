@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Table from './components/Table';
+import Minesweeper from './minesweeper/Minesweeper';
 
 const appStyle = {marginTop: '70px'}
 const str = 'React'
@@ -17,6 +18,22 @@ export default class App extends Component {
     mineCount: 10
   }
 
+  render() {
+    return (
+      <div className="App" style={appStyle}>
+        <h1>Minesweeper</h1>
+        <Minesweeper />
+        <h1>Hello {str} World!</h1>
+        {/* <button className="btn btn-primary"
+                onClick={this.removeCharacter}>Stlac ma</button> */}
+        {/* <Table className="Table"
+               charactersData={this.state.characters}
+               handleDelete={this.removeCharacter}
+                /> */}
+      </div>
+    )
+  }
+
   // najprv index, lebo react podava event vzdy ako posledny po vsetkych parametroch
   // removeCharacter = (index, event) => {
   
@@ -27,19 +44,5 @@ export default class App extends Component {
         return i !== index
       }),
     })
-  }
-
-  render() {
-    return (
-      <div className="App" style={appStyle}>
-        <h1>Hello {str} World!</h1>
-        {/* <button className="btn btn-primary"
-                onClick={this.removeCharacter}>Stlac ma</button> */}
-        <Table className="Table"
-               charactersData={this.state.characters}
-               handleDelete={this.removeCharacter}
-                />
-      </div>
-    )
   }
 }

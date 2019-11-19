@@ -124,11 +124,11 @@ export class Field {
   }
 
   countOpenTiles() {
-    const count = this.field.map((row) =>
-      row.filter(tile => tile.state === TileStateEnum.OPEN).length
-    ).filter(e => e ? e : 0).reduce((prev, curr) => prev + curr)
-    console.log(count)
-    return count
+    return this.field.map(
+        (row) => row.filter(
+          tile => tile.state === TileStateEnum.OPEN
+          ).length
+      ).reduce((prev, curr) => prev + curr)
   }
 
   deepCopyField() {

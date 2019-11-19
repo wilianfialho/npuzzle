@@ -1,6 +1,7 @@
 .colStyle {
   border-color: white;
-  padding: 0px 3px;
+  padding: 0px 1px;
+  padding-bottom: 0px;
 }
 
 .tileStyle {
@@ -10,13 +11,13 @@
   border-radius: 3px;
   width: 24px;
   height: 24px;
-  background-color: 'lightgray';
+  font-weight: bold;
 }
 
 .open {
-  background-color: 'darkgray';
+  background-color: darkgray !important;
 }
 
 .closed {
-  background-color: 'lightgray';
+  background-color: lightgray !important;
 }

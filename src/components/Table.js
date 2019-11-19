@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import { Clue, TileStateEnum, Mine } from '../minesweeper/Core';
-import { TileComponent }  from '../minesweeper/Tile'
 
 const TableHeader = () => {
   return (
     <thead style={{fontWeight: 'bold'}}>
       <tr>
-        <td scope="col">Name</td>
-        <td scope="col">Job</td>
-        <td scope="col">Action</td>
+        <th scope="col">Name</th>
+        <th scope="col">Job</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
   )
@@ -30,17 +28,9 @@ const TableBody = ({ charData, handleDelete }) => {
       </td>
     </tr>
   );
-  const tile1 = new Clue(4)
-  const tile2 = new Clue(4, TileStateEnum.CLOSED)
-  const mine = new Mine()
   return (
     <tbody>
       {rows}
-      <tr>
-        <TileComponent tile={tile1}/>
-        <TileComponent tile={tile2}/>
-        <TileComponent tile={mine}/>
-      </tr>
     </tbody>
   )
 }
