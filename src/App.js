@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Table from './components/Table';
 import Minesweeper from './minesweeper/Minesweeper';
+import Tasks from './tasks/Tasks';
 
-const appStyle = {marginTop: '70px'}
+const appStyle = {marginTop: '10px'}
 const str = 'React'
 
 export default class App extends Component {
@@ -21,9 +22,10 @@ export default class App extends Component {
   render() {
     return (
       <div className="App" style={appStyle}>
-        <h1>Minesweeper</h1>
-        <Minesweeper />
-        <h1>Hello {str} World!</h1>
+        <Tasks />
+        {/* <h1>Minesweeper</h1> */}
+        {/* <Minesweeper /> */}
+        {/* <h1>Hello {str} World!</h1> */}
         {/* <button className="btn btn-primary"
                 onClick={this.removeCharacter}>Stlac ma</button> */}
         {/* <Table className="Table"
