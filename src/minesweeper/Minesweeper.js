@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FieldComponent from './Field'
 import { Field } from './Core'
+import GameState from './GameState'
 
 export default class Minesweeper extends Component {
   constructor(props) {
@@ -12,9 +13,12 @@ export default class Minesweeper extends Component {
   }
 
   render() {
+    const { field } = this.state
     return (
       <div>
-        <FieldComponent field={this.state.field}
+        <GameState gameState={field.gameState}
+                   handleNewGame={this.handleNewGame} />
+        <FieldComponent field={field}
                         handleOpen={this.handleOpen}
                         handleMark={this.handleMark}/>
       </div>
@@ -31,5 +35,9 @@ export default class Minesweeper extends Component {
     const { field } = this.state
     field.markTile(row, col)
     this.setState({ field: field })
+  }
+
+  handleNewGame = () => {
+    this.setState({ field: new Field(10, 10, 10) })
   }
 }

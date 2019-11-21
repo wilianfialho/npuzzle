@@ -22,12 +22,12 @@ export default function TileComponent(props) {
               >
         { tile.state === TileStateEnum.MARKED && 
                           <img alt={row + ',' + col} 
-                               src={require(`./img/mark.gif`)} /> }
+                               src='https://github.com/CDE-services/fptFullstackJS2019React/blob/master/src/minesweeper/img/mark.gif?raw=true' /> }
         {
           tile.state === TileStateEnum.OPEN && (
             tile instanceof Mine ? 
                           <img alt={row + ',' + col}
-                               src={require(`./img/mine.gif`)} /> 
+                               src='https://github.com/CDE-services/fptFullstackJS2019React/blob/master/src/minesweeper/img/mine.gif?raw=true' /> 
                                  : 
                           <span>{tile.value}</span>
           )
