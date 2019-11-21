@@ -2,13 +2,16 @@ import React from "react";
 import { GameStateEnum } from "./Core";
 
 export default function GameState({ gameState, handleNewGame }) {
-  return (
-    <div>
-      {gameState === GameStateEnum.WON && <h1>You WON!</h1>}
-      {gameState === GameStateEnum.LOST && <h1>You LOST!</h1>}
-      {gameState !== GameStateEnum.PLAYING && (
-        <button onClick={() => handleNewGame()}>New game</button>
-      )}
-    </div>
-  )
+  const title = null
+  switch(gameState) {
+    case GameStateEnum.WON: title = <h1>You WON!</h1>; break;
+    case GameStateEnum.LOST: title = <h1>You WON!</h1>; break;
+    case GameStateEnum.PLAYING: break;
+  }
+  if(title)
+    return (<div>
+      {title}
+      <button onClick={() => handleNewGame()}>New game</button>
+    </div>)
+  else return null
 }

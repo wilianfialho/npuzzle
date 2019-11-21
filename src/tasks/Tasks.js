@@ -32,7 +32,8 @@ export class Tasks extends Component {
               return <Task key={i} 
                           task={t}
                           showDetail={this.showDetail}
-                          editHandler={this.editHandler}/>
+                          editHandler={this.editHandler}
+                          finishHandler={this.finishHandler}/>
             })}
           </ul>
           <button className="btn btn-primary float-right"
@@ -70,6 +71,14 @@ export class Tasks extends Component {
     })
   }
 
+  finishHandler = (task) => {
+    const { tasks } = this.state
+    task.finished = true
+    this.setState({
+      tasks: tasks
+    })
+  }
+
   showDetail = (task) => {
     this.setState({
       clickedTask: task
@@ -89,7 +98,7 @@ export class Tasks extends Component {
     
     if(editedTask) {
       const editedTask = tasks.find(t => t.id === task.id)
-      editedTask.text = task.text
+      task.text = task.text
       editedTask.descr = task.descr
       
       this.setState({
