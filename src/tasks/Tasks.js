@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Task from './Task'
 import TaskDetail from './TaskDetail'
 import TaskForm from './TaskForm'
+import { Switch, Route } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 export class Tasks extends Component {
   constructor(props) {
@@ -22,7 +24,8 @@ export class Tasks extends Component {
   }
 
   render() {
-    const { tasks } = this.state
+    const { tasks, clickedTask, editedTask } = this.state
+    const { history, match } = this.props;
     return (
       <div className="container">
         <h1 className="mb-5">My tasks:</h1>
@@ -32,35 +35,35 @@ export class Tasks extends Component {
               return <Task key={i} 
                           task={t}
                           showDetail={this.showDetail}
-                          editHandler={this.editHandler}
+                          editHandler={() => {
+                            this.editHandler(t)
+                            history.push(`${match.url}/form/${i}`)
+                          }}
                           finishHandler={this.finishHandler}/>
             })}
           </ul>
-          <button className="btn btn-primary float-right"
-                  onClick={() => this.showFormHandler()}>
+          <button className="btn btn-primary float-right mb-5"
+                  onClick={() => {
+                    this.showFormHandler()
+                    history.push(`${match.url}/form`)
+                  }}>
             Add task
           </button>
         </div>
-        { this.displayTaskDetail() }
-        { this.displayTaskForm() }
+        <Switch>
+          <Route path={`${match.url}/task-detail/:id`}>
+            <TaskDetail task={clickedTask}
+                        deleteHandler={this.deleteHandler} />
+          </Route>
+          <Route path={`${match.url}/form`}>
+            <TaskForm editedTask={editedTask}
+                      submitHandler={this.submitHandler}
+                      cancelHandler={this.cancelHandler} />
+          </Route>
+          <Route path={`${match.url}/`}></Route>
+        </Switch>
       </div>
     )
-  }
-
-  displayTaskDetail() {
-    const { clickedTask } = this.state
-    if(clickedTask) {
-      return <TaskDetail task={clickedTask}
-                         deleteHandler={this.deleteHandler} />
-    } else return null
-  }
-
-  displayTaskForm() {
-    return this.state.showForm ? 
-          <TaskForm editedTask={this.state.editedTask}
-                    submitHandler={this.submitHandler}
-                    cancelHandler={this.cancelHandler} /> : 
-          null
   }
 
   deleteHandler = () => {
@@ -80,9 +83,11 @@ export class Tasks extends Component {
   }
 
   showDetail = (task) => {
+    const { history } = this.props
     this.setState({
       clickedTask: task
     })
+    history.push(`/tasks/task-detail/${task.id}`)
   }
 
   editHandler = (task) => {
@@ -98,7 +103,7 @@ export class Tasks extends Component {
     
     if(editedTask) {
       const editedTask = tasks.find(t => t.id === task.id)
-      task.text = task.text
+      editedTask.text = task.text
       editedTask.descr = task.descr
       
       this.setState({
@@ -131,4 +136,4 @@ export class Tasks extends Component {
   }
 }
 
-export default Tasks
+export default withRouter(Tasks)

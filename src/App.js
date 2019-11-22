@@ -54,11 +54,9 @@ export default class App extends Component {
           <Switch>
             <Route path="/tasks"> <Tasks /> </Route>
             <Route path="/minesweeper"> <Minesweeper /> </Route>
-            
             <Route path="/character/character-detail/:characterId">
               <CharacterDetail />
             </Route>
-
             <Route path="/character">
               <h1>Characters example</h1>
               <Table className="Table"
@@ -66,7 +64,6 @@ export default class App extends Component {
                handleDelete={this.removeCharacter}
                 />
             </Route>
-            
             <Route path="/">
               <h1>Hello {str} world!</h1>
             </Route>
