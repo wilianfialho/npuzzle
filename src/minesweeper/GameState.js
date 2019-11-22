@@ -2,7 +2,7 @@ import React from "react";
 import { GameStateEnum } from "./Core";
 
 export default function GameState({ gameState, handleNewGame }) {
-  const title = null
+  let title = null
   switch(gameState) {
     case GameStateEnum.WON: title = <h1>You WON!</h1>; break;
     case GameStateEnum.LOST: title = <h1>You WON!</h1>; break;

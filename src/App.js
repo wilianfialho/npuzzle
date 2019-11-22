@@ -6,7 +6,7 @@ import Tasks from './tasks/Tasks';
 import {BrowserRouter as Router, 
         Switch, 
         Route, 
-        Link} from 'react-router-dom';
+        NavLink} from 'react-router-dom';
 
 const str = 'React'
 
@@ -26,16 +26,28 @@ export default class App extends Component {
           <nav className="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/">Home</Link>
-              </li>
-              <li className="nav-item active">
-                <Link className="nav-link" to="/tasks">Tasks</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/minesweeper">Minesweeper</Link>
+                <NavLink className="nav-link"
+                         activeClassName="active" 
+                         exact={true}
+                         to="/">Home</NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/table">Table</Link>
+                <NavLink className="nav-link"
+                         activeClassName="active" 
+                         exact={true}
+                         to="/tasks">Tasks</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link"
+                         activeClassName="active" 
+                         exact={true}
+                         to="/minesweeper">Minesweeper</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link"
+                         activeClassName="active" 
+                         exact={true}
+                         to="/table">Characters</NavLink>
               </li>
             </ul>
           </nav>
