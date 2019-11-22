@@ -16,6 +16,7 @@ export default class Minesweeper extends Component {
     const { field } = this.state
     return (
       <div>
+        <h1>Minesweeper</h1>
         <GameState gameState={field.gameState}
                    handleNewGame={this.handleNewGame} />
         <FieldComponent field={field}

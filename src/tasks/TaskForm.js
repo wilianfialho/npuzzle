@@ -6,16 +6,16 @@ export default class TaskForm extends Component {
     const editedTask = props.editedTask
 
     if(editedTask === null) {
-      this.initialState = { text: '', descr: ''}
+      this.initialState = { text: '', descr: '', finished: false}
     } else {
-      this.initialState = editedTask      
+      this.initialState = editedTask
     }
 
     this.state = this.initialState
   }
 
   render() {
-    const { text, descr } = this.state
+    const { text, descr, finished } = this.state
     const { submitHandler, cancelHandler } = this.props
     return (
       <div>
@@ -37,9 +37,18 @@ export default class TaskForm extends Component {
                    value={descr}
                    onChange={this.handleChange}/>
           </div>
+          <div className="form-check">
+            <input className="form-check-input"
+                   type="checkbox" 
+                   id="finished"
+                   name="finished"
+                   checked={finished}
+                   onChange={this.handleChange}/>
+            <label className="form-check-label" for="finished">Finished</label>
+          </div>
           <button className="btn btn-primary"
                   type="button"
-                  onClick={() => submitHandler(this.state)}>
+                  onClick={this.handleSubmit}>
                     Submit
           </button>
           <button className="btn btn-secondary"
@@ -63,11 +72,17 @@ export default class TaskForm extends Component {
 
   handleChange = event => {
     console.log(event.target)
-    const { name, value } = event.target
+    const { name, value, checked, type } = event.target
+    const valueToChange = type === 'checkbox' ? checked : value
     this.setState({
-      [name]: value,
+      [name]: valueToChange,
     })
   } 
+
+  handleSubmit = () => {
+    this.props.submitHandler(this.state)
+    this.setState(this.initialState)
+  }
 
   resetHandler = () => {
     this.setState(this.initialState)

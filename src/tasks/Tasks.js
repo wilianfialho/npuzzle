@@ -25,7 +25,7 @@ export class Tasks extends Component {
     const { tasks } = this.state
     return (
       <div className="container">
-        <h1>My tasks:</h1>
+        <h1 className="mb-5">My tasks:</h1>
         <div className="mb-5">
           <ul className="list-group mb-3">
             {tasks.map((t, i) => {
@@ -109,9 +109,8 @@ export class Tasks extends Component {
       task.id = lastTaskIndex + 1
       task.finished = false
 
-      tasks.push(task)
       this.setState({
-        tasks: tasks,
+        tasks: [...tasks, task],
         lastTaskIndex: lastTaskIndex + 1,
       })
     }
