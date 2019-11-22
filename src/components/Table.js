@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 const TableHeader = () => {
   return (
@@ -17,16 +18,16 @@ const TableHeader = () => {
 
 const TableBody = ({ charData, handleDelete }) => {
   const rows = charData.map((character, index) => 
-    <tr key={index}>
-      <td>{character.name}</td>
-      <td>{character.job}</td>
-      <td>
-        <button className='btn btn-secondary'
-                onClick={() => handleDelete(index)}>
-          Delete
-        </button>
-      </td>
-    </tr>
+      <tr key={index}>
+        <td><Link to={'/character/character-detail/' + character.name}>{character.name}</Link></td>
+        <td>{character.job}</td>
+        <td>
+          <button className='btn btn-secondary'
+                  onClick={() => handleDelete(index)}>
+            Delete
+          </button>
+        </td>
+      </tr>
   );
   return (
     <tbody>

@@ -6,6 +6,8 @@ import Tasks from './tasks/Tasks';
 import {BrowserRouter as Router, 
         Switch, 
         Route, 
+        Link,
+        useParams,
         NavLink} from 'react-router-dom';
 
 const str = 'React'
@@ -34,20 +36,17 @@ export default class App extends Component {
               <li className="nav-item">
                 <NavLink className="nav-link"
                          activeClassName="active" 
-                         exact={true}
                          to="/tasks">Tasks</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link"
                          activeClassName="active" 
-                         exact={true}
                          to="/minesweeper">Minesweeper</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link"
                          activeClassName="active" 
-                         exact={true}
-                         to="/table">Characters</NavLink>
+                         to="/character">Characters</NavLink>
               </li>
             </ul>
           </nav>
@@ -55,13 +54,19 @@ export default class App extends Component {
           <Switch>
             <Route path="/tasks"> <Tasks /> </Route>
             <Route path="/minesweeper"> <Minesweeper /> </Route>
-            <Route path="/table">
+            
+            <Route path="/character/character-detail/:characterId">
+              <CharacterDetail />
+            </Route>
+
+            <Route path="/character">
               <h1>Characters example</h1>
               <Table className="Table"
                charactersData={this.state.characters}
                handleDelete={this.removeCharacter}
                 />
             </Route>
+            
             <Route path="/">
               <h1>Hello {str} world!</h1>
             </Route>
@@ -71,7 +76,6 @@ export default class App extends Component {
       </Router>
     );
   }
-  
 
   //</nav> najprv index, lebo react podava event vzdy ako posledny po vsetkych parametroch
   // removeCharacter = (index, event) => {
@@ -84,4 +88,14 @@ export default class App extends Component {
       }),
     })
   }
+}
+
+function CharacterDetail() {
+  let { characterId } = useParams();
+
+  return <div>
+    <h1>Character detail</h1>
+    <strong>Character name: </strong> {characterId}
+    <Link to="/character">Go back</Link>
+  </div>
 }
