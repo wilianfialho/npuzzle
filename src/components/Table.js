@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import './Table.css'
 
 const TableHeader = () => {
   return (
@@ -17,8 +18,15 @@ const TableHeader = () => {
 // const { charData, handleDelete } = props
 
 const TableBody = ({ charData, handleDelete }) => {
+  const history = useHistory();
+
+  function handleClick(character) {
+    history.push("/character/character-detail/" + character.name);
+  }
   const rows = charData.map((character, index) => 
-      <tr key={index}>
+      <tr className="character-table-row" 
+          key={index} 
+          onClick={() => handleClick(character)}>
         <td><Link to={'/character/character-detail/' + character.name}>{character.name}</Link></td>
         <td>{character.job}</td>
         <td>

@@ -50,7 +50,7 @@ export default class App extends Component {
               </li>
             </ul>
           </nav>
-          <div class="container" style={{marginTop: '68px'}}>
+          <div className="container" style={{marginTop: '68px'}}>
           <Switch>
             <Route path="/tasks"> <Tasks /> </Route>
             <Route path="/minesweeper"> <Minesweeper /> </Route>
