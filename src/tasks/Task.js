@@ -23,7 +23,7 @@ export default function Task(props) {
 
 function displayFinishButton(task, finishHandler) {
   if(!task.finished) return (
-  <button className="btn btn-primary"
+  <button className="btn btn-primary mr-2"
                     onClick={(event) => {
                       event.stopPropagation()
                       finishHandler(task)

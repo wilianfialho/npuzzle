@@ -16,9 +16,9 @@ export default class TaskForm extends Component {
 
   render() {
     const { text, descr, finished } = this.state
-    const { submitHandler, cancelHandler } = this.props
+    const { cancelHandler } = this.props
     return (
-      <div>
+      <div class="mb-5">
         {this.getFormTitle()}
         <form>
           <div className="form-group">
@@ -37,7 +37,7 @@ export default class TaskForm extends Component {
                    value={descr}
                    onChange={this.handleChange}/>
           </div>
-          <div className="form-check">
+          <div className="form-check mb-3">
             <input className="form-check-input"
                    type="checkbox" 
                    id="finished"
@@ -46,12 +46,12 @@ export default class TaskForm extends Component {
                    onChange={this.handleChange}/>
             <label className="form-check-label" for="finished">Finished</label>
           </div>
-          <button className="btn btn-primary"
+          <button className="btn btn-primary mr-2"
                   type="button"
                   onClick={this.handleSubmit}>
                     Submit
           </button>
-          <button className="btn btn-secondary"
+          <button className="btn btn-secondary mr-2"
                   type="button"
                   onClick={() => this.resetHandler()}>
                     Reset
