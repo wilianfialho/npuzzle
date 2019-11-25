@@ -83,11 +83,11 @@ export class Tasks extends Component {
   }
 
   showDetail = (task) => {
-    const { history } = this.props
+    const { history, match } = this.props
     this.setState({
       clickedTask: task
     })
-    history.push(`/tasks/task-detail/${task.id}`)
+    history.push(`${match.url}/task-detail/${task.id}`)
   }
 
   editHandler = (task) => {

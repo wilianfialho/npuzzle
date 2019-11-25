@@ -31,7 +31,10 @@ const TableBody = ({ charData, handleDelete }) => {
         <td>{character.job}</td>
         <td>
           <button className='btn btn-secondary'
-                  onClick={() => handleDelete(index)}>
+                  onClick={(e) => {
+                    e.stopPropagation() 
+                    handleDelete(index)
+                  }}>
             Delete
           </button>
         </td>
@@ -45,6 +48,11 @@ const TableBody = ({ charData, handleDelete }) => {
 }
 
 export default class Table extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('should update in table')
+    return true
+  }
+
   render() {
     const { charactersData, handleDelete } = this.props
 
