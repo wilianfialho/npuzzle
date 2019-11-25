@@ -6,14 +6,8 @@ export class Characters extends Component {
     characters: []
   }
 
-  getDerivedStateFromProps(nextProps, prevState) {
-    console.log('state => props')
-    console.log(nextProps)
-    console.log(prevState)
-  }
-
   componentDidMount() {
-    console.log('UPDATING')
+    console.log('>>>AFTER DISPLAYING THE Characters COMPONENT<<<')
     fetch('http://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
       .then((data) => {
@@ -28,6 +22,10 @@ export class Characters extends Component {
           console.log(data)
       })
       .catch(console.log)
+  }
+
+  componentWillUnmount() {
+    console.log('>>>BEFORE DISSAPEARING THE Characters COMPONENT<<<')
   }
 
   render() {

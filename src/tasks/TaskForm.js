@@ -6,7 +6,7 @@ export default class TaskForm extends Component {
     const editedTask = props.editedTask
 
     if(editedTask === null) {
-      this.initialState = { text: '', descr: '', finished: false}
+      this.initialState = { id: -1, text: '', descr: '', finished: false}
     } else {
       this.initialState = editedTask
     }
@@ -14,11 +14,20 @@ export default class TaskForm extends Component {
     this.state = this.initialState
   }
 
+  
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(nextProps.editedTask && nextProps.editedTask.id !== prevState.id) {
+      prevState = nextProps.editedTask
+    }
+    return prevState
+  }
+
   render() {
     const { text, descr, finished } = this.state
     const { cancelHandler } = this.props
     return (
-      <div class="mb-5">
+      <div className="mb-5">
         {this.getFormTitle()}
         <form>
           <div className="form-group">
@@ -44,7 +53,7 @@ export default class TaskForm extends Component {
                    name="finished"
                    checked={finished}
                    onChange={this.handleChange}/>
-            <label className="form-check-label" for="finished">Finished</label>
+            <label className="form-check-label" htmlFor="finished">Finished</label>
           </div>
           <button className="btn btn-primary mr-2"
                   type="button"
