@@ -4,12 +4,17 @@
 /node_modules
 /.pnp
 .pnp.js
+/backend_project/node_modules
+/backend_project/.pnp
+/backend_project/.pnp.js
 
 # testing
 /coverage
+/backend_project/coverage
 
 # production
 /build
+/backend_project/build
 
 # misc
 .DS_Store
