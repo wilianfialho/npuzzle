@@ -1,0 +1,12 @@
+.character-table-row {
+  cursor: pointer !important;
+}
+
+.character-table-row:hover {
+  box-shadow: 4px 4px 8px lightgrey;
+}
+
+.character-table-row:focus {
+  outline: 0; /*remove outline*/
+  box-shadow: 2px 2px 4px lightgrey;
+}

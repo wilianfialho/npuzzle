@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const router = express.Router();
 
-const url = "mongodb://localhost:27017/score";
+const url = "mongodb://localhost:27017/minesweeper";
 
 router.use(express.json());
 

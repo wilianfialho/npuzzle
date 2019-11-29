@@ -3,17 +3,17 @@ const mongoose = require("mongoose");
 
 const router = express.Router();
 
-const url = "mongodb://localhost:27017/comment";
+const url = "mongodb://localhost:27017/minesweeper";
 
 router.use(express.json());
 
-const schemaScore = new mongoose.Schema({
-  date: { type: Date },
-  player: { type: String, require: true, trim: true, minlength: 3 },
-  comment: { type: String, require: true, trim: true, minlength: 3 }
+const schemaComment = new mongoose.Schema({
+  player: { type: String, required: true, trim: true, minlength: 3 },
+  description: { type: String, required: true, trim: true, minlength: 3 },
+  date: { type: Date }
 });
 
-const Score = mongoose.model("score", schemaScore);
+const Comment = mongoose.model("comment", schemaComment);
 
 router.get("/", (req, res) => {
   mongoose
@@ -22,9 +22,9 @@ router.get("/", (req, res) => {
       useUnifiedTopology: true
     })
     .then(db => {
-      Score.find({}).then(scores => {
+      Comment.find({}).then(comments => {
         db.disconnect();
-        res.send(scores);
+        res.send(comments);
       });
     })
     .catch(() => {
@@ -33,19 +33,19 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const score = new Score({
-    date: Date.now(),
+  const comment = new Comment({
     player: req.body.player,
-    points: req.body.points
+    description: req.body.description,
+    date: Date.now()
   });
-  console.log(score);
+  console.log(comment);
   mongoose
     .connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
     .then(db => {
-      score
+      comment
         .save()
         .then(inserted => {
           db.disconnect();
